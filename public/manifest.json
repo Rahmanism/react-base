@@ -1,0 +1,16 @@
+{
+  "short_name": "ZKM-Prj",
+  "name": "ZKM Project",
+  "version": "1.3.2.116",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "96x96 64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#22409a",
+  "background_color": "#ffffff"
+}

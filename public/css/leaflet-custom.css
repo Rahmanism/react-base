@@ -1,0 +1,18 @@
+.leaflet-popup-content-wrapper {
+  text-align: right !important;
+}
+
+.leaflet-marker-icon-error {
+  /* red */
+  filter: sepia(1) hue-rotate(-30deg) saturate(200);
+}
+
+.leaflet-marker-icon-success {
+  /* green */
+  filter: sepia(1) hue-rotate(70deg) saturate(7);
+}
+
+.leaflet-marker-icon-warning {
+  /* orange */
+  filter: sepia(1) hue-rotate(-40deg) saturate(4);
+}

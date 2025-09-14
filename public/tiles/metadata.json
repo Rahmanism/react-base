@@ -1,0 +1,10 @@
+{
+    "name": "ZKM-Iran",
+    "format": "png",
+    "bounds": "33.750,21.963,73.103,48.922",
+    "maxzoom": "8",
+    "minzoom": "6",
+    "type": "baselayer",
+    "version": "1.3",
+    "description": "ZKM-Iran created on 2025-04-21 22:26:06 by MOBAC"
+}
