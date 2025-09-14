@@ -20,6 +20,4 @@
 - [Front-end Developer](https://github.com/Rahmanism)
 
 ---
-&nbsp;  
-
 > - The bad news is time flies.
