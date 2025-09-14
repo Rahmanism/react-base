@@ -1,9 +1,6 @@
 export {
-  // goto,
-  // deleteCookie,
   delay,
   getVersion,
-  // getFullVersion,
   getPersianNumbers,
   ding,
 } from 'common/common'
@@ -13,8 +10,6 @@ export {
   ActionType,
   TheColors,
   TheColorsCodes,
-  DeviceOps,
-  DeviceOpTitles,
   DingEvents,
   EventStatus,
 } from 'common/consts'

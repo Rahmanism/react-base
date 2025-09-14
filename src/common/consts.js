@@ -1,5 +1,5 @@
 export const Consts = {
-  brand: 'GeoLinks',
+  brand: 'React-Base',
 
   save_successful: 'با موفقیت ذخیره شد.',
   delete_failed: 'عملیات حذف موفقیت‌آمیز نبود.',
@@ -55,33 +55,6 @@ export const TheColorsCodes = {
   error: 4,
   info: 5,
   warning: 6,
-}
-
-export const DeviceOps = {
-  ConnectDevice: 1,
-  Disconnect: 2,
-  CancelAlarm: 3,
-  RestartDevice: 4,
-  OpenDoor: 5,
-  CloseDoor: 6,
-  ChangeIP: 7,
-  GetRTLogs: 8,
-}
-
-export const DeviceOpTitles = {
-  ConnectDevice: 'ConnectDevice',
-  Disconnect: 'Disconnect',
-  CancelAlarm: 'CancelAlarm',
-  RestartDevice: 'RestartDevice',
-  OpenDoor: 'OpenDoor',
-  CloseDoor: 'CloseDoor',
-  ChangeIP: 'ChangeIP',
-  GetRTLogs: 'GetRTLogs',
-}
-
-export const ConfigurationTitles = {
-  DoorOpenTimeout: 'وقتی در از طریق پنل وب باز می‌شود، چند ثانیه باز بماند؟',
-  GetAllDeviceLogsInterval: 'صفحه داشبورد هر چند ثانیه یک بار بروزرسانی شود؟',
 }
 
 /**
