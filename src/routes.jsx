@@ -36,9 +36,6 @@ const Notifications = lazy(() => import('layouts/notifications'))
 const SignIn = lazy(() => import('layouts/authentication/sign-in'))
 const SignUp = lazy(() => import('layouts/authentication/sign-up'))
 const Users = lazy(() => import('layouts/users'))
-const Devices = lazy(() => import('layouts/devices'))
-const DoorAccessLog = lazy(() => import('layouts/doorAccessLog/index2'))
-const DeviceOpsPermissions = lazy(() => import('layouts/deviceOpsPermissions'))
 const Configuration = lazy(() => import('layouts/configuration'))
 
 const routes = [
@@ -61,64 +58,12 @@ const routes = [
   },
   {
     type: 'collapse',
-    name: 'دستگاه‌ها',
-    key: 'devices',
-    icon: (
-      <Icon fontSize="small" baseClassName="material-icons-outlined">
-        screen_lock_landscape_icon
-      </Icon>
-    ),
-    route: '/devices',
-    component: <Devices />,
-  },
-  {
-    type: 'collapse',
-    name: 'لاگ',
-    key: 'reports',
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: '/reports',
-    component: <DoorAccessLog />,
-  },
-  {
-    type: 'hidden',
-    name: 'مجوزهای دستگاه',
-    key: 'deviceOpsPermissions',
-    icon: <Icon fontSize="small">key</Icon>,
-    route: '/deviceOpsPermissions',
-    component: <DeviceOpsPermissions />,
-  },
-  // {
-  //   type: 'collapse',
-  //   name: 'وضعیت',
-  //   key: 'billing',
-  //   icon: <Icon fontSize="small">receipt_long</Icon>,
-  //   route: '/billing',
-  //   component: <Billing />,
-  // },
-  // {
-  //   type: 'collapse',
-  //   name: 'RTL',
-  //   key: 'rtl',
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: '/rtl',
-  //   component: <RTL />,
-  // },
-  {
-    type: 'collapse',
     name: 'اعلان‌ها',
     key: 'notifications',
     icon: <Icon fontSize="small">notifications</Icon>,
     route: '/notifications',
     component: <Notifications />,
   },
-  // {
-  //   type: 'collapse',
-  //   name: 'پروفایل',
-  //   key: 'profile',
-  //   icon: <Icon fontSize="small">person</Icon>,
-  //   route: '/profile',
-  //   component: <Profile />,
-  // },
   {
     type: 'collapse',
     name: 'تنظیمات',
