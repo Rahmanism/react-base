@@ -1,9 +1,8 @@
-# GeoLinks Project - Front-end
+# React-Base Project - Front-end
 
 ![version](https://img.shields.io/badge/version-0.1.0.1-green.svg)
 
-**GeoLinks** is a project for managing spots of fiber optic network on a map.  
-This is a front-end project for **GeoLinks** deployed using ReactJS and MUI.
+**React-Base** is a base project for my other projects. It's a simple admin panel deployed using ReactJS and MUI.  
 
 - [How To Run](#how-to-run)
 - [Links](#links)
@@ -17,7 +16,7 @@ This is a front-end project for **GeoLinks** deployed using ReactJS and MUI.
 
 ## Links
 
-- [Github Issues Page](https://github.com/GeoLinks-Mashhad/front/issues)  
+- [Github Issues Page](https://github.com/Rahmanism/react-base/issues)  
 - [Front-end Developer](https://github.com/Rahmanism)
 
 <br/>

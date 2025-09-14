@@ -52,11 +52,11 @@ export default defineConfig({
   },
 
   server: {
-    host: 'geolinks.ir',
+    host: 'rahmanism.ir',
     port: 3000,
     // https: {
-      // key: './tamzkm.ir-privateKey.pem',
-      // cert: './tamzkm.ir-cert.crt',
+      // key: './rahmanism.ir-privateKey.pem',
+      // cert: './rahmanism.ir-cert.crt',
     // },
   },
 })

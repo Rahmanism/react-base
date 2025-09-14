@@ -1,16 +1,16 @@
 {
-  "name": "geolinks",
+  "name": "react-base",
   "version": "0.1.0",
   "private": true,
   "author": "Rahmanism",
   "license": "Private",
-  "description": "A web based spot management on map",
+  "description": "A simple web based admin panel",
   "bugs": {
-    "url": "https://github.com/GeoLinks-Mashhad/front/issues"
+    "url": "https://github.com/Rahmanism/react-base/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:GeoLinks-Mashhad/front.git"
+    "url": "git+git@github.com:Rahmanism/react-base.git"
   },
   "engines": {
     "node": ">=21",
