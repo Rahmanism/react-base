@@ -4,7 +4,7 @@
 
 **React-Base** is a base project for my other projects. It's a simple admin panel deployed using ReactJS and MUI.  
 
-- [How To Run](#how-to-run)
+- [How To Run](#how-to-run--build)
 - [Links](#links)
 
 ## How To Run & Build
@@ -19,10 +19,7 @@
 - [Github Issues Page](https://github.com/Rahmanism/react-base/issues)  
 - [Front-end Developer](https://github.com/Rahmanism)
 
-<br/>
-
 ---
+&nbsp;  
 
-<br/>
-  
 > - The bad news is time flies.
