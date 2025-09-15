@@ -1,6 +1,6 @@
 // @mui material components
+import Grid from '@mui/material/Grid2'
 import Card from '@mui/material/Card'
-import Grid from '@mui/material/Grid'
 import Icon from '@mui/material/Icon'
 import Tooltip from '@mui/material/Tooltip'
 
@@ -22,13 +22,7 @@ function PaymentMethod() {
 
   return (
     <Card id="delete-account">
-      <MDBox
-        pt={2}
-        px={2}
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-      >
+      <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
         <MDTypography variant="h6" fontWeight="medium">
           Payment Method
         </MDTypography>
@@ -39,7 +33,7 @@ function PaymentMethod() {
       </MDBox>
       <MDBox p={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MDBox
               borderRadius="lg"
               display="flex"
@@ -51,21 +45,11 @@ function PaymentMethod() {
                   `${borderWidth[1]} solid ${borderColor}`,
               }}
             >
-              <MDBox
-                component="img"
-                src={masterCardLogo}
-                alt="master card"
-                width="10%"
-                mr={2}
-              />
+              <MDBox component="img" src={masterCardLogo} alt="master card" width="10%" mr={2} />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;7852
               </MDTypography>
-              <MDBox
-                ml="auto"
-                lineHeight={0}
-                color={darkMode ? 'white' : 'dark'}
-              >
+              <MDBox ml="auto" lineHeight={0} color={darkMode ? 'white' : 'dark'}>
                 <Tooltip title="Edit Card" placement="top">
                   <Icon sx={{ cursor: 'pointer' }} fontSize="small">
                     edit
@@ -74,7 +58,7 @@ function PaymentMethod() {
               </MDBox>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MDBox
               borderRadius="lg"
               display="flex"
@@ -86,21 +70,11 @@ function PaymentMethod() {
                   `${borderWidth[1]} solid ${borderColor}`,
               }}
             >
-              <MDBox
-                component="img"
-                src={visaLogo}
-                alt="master card"
-                width="10%"
-                mr={2}
-              />
+              <MDBox component="img" src={visaLogo} alt="master card" width="10%" mr={2} />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;5248
               </MDTypography>
-              <MDBox
-                ml="auto"
-                lineHeight={0}
-                color={darkMode ? 'white' : 'dark'}
-              >
+              <MDBox ml="auto" lineHeight={0} color={darkMode ? 'white' : 'dark'}>
                 <Tooltip title="Edit Card" placement="top">
                   <Icon sx={{ cursor: 'pointer' }} fontSize="small">
                     edit

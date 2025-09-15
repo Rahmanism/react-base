@@ -1,5 +1,5 @@
 // @mui material components
-import Grid from '@mui/material/Grid'
+import { Grid } from '@mui/material/Grid2'
 import Card from '@mui/material/Card'
 
 // components
@@ -10,15 +10,15 @@ import DataTable from 'complex-components/Tables/DataTable'
 
 // Data
 import authorsTableData from 'layouts/tables/data/authorsTableData'
-// import projectsTableData from 'layouts/tables/data/projectsTableData'
+import projectsTableData from 'layouts/tables/data/projectsTableData'
 
 function Tables() {
   const { columns, rows } = authorsTableData()
-  // const { columns: pColumns, rows: pRows } = projectsTableData()
+  const { columns: pColumns, rows: pRows } = projectsTableData()
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Card>
           <MDBox
             mx={2}
@@ -45,7 +45,7 @@ function Tables() {
           </MDBox>
         </Card>
       </Grid>
-      {/* <Grid item xs={12}>
+      <Grid size={12}>
         <Card>
           <MDBox
             mx={2}
@@ -71,7 +71,7 @@ function Tables() {
             />
           </MDBox>
         </Card>
-      </Grid> */}
+      </Grid>
     </Grid>
   )
 }

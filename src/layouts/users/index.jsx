@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
-import { Grid2, Icon, Tooltip } from '@mui/material'
+import { Icon, Tooltip } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 
 // components
 import MDBox from 'components/MDBox'
@@ -240,14 +241,14 @@ export default function UserList() {
         />
       )}
       <MDBox py={3}>
-        <Grid2 container pb={3}>
+        <Grid container pb={3}>
           <MDButton onClick={showForm} color="primary" variant="contained">
             <Icon fontSize="small" style={{ marginLeft: '.3rem' }}>
               add_circle
             </Icon>
             افزودن کاربر جدید
           </MDButton>
-        </Grid2>
+        </Grid>
         <DataGridRtl rows={rows} columns={columns} loading={isLoading} />
       </MDBox>
     </>

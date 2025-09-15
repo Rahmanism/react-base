@@ -1,5 +1,5 @@
 // @mui material components
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import Divider from '@mui/material/Divider'
 
 // @mui icons
@@ -37,10 +37,10 @@ function Overview() {
     <Header>
       <MDBox mt={5} mb={3}>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={6} xl={4}>
+          <Grid size={{ xs: 12, md: 6, xl: 4 }}>
             <PlatformSettings />
           </Grid>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: 'flex' }}>
+          <Grid size={{ xs: 12, md: 6, xl: 4 }} sx={{ display: 'flex' }}>
             <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
             <ProfileInfoCard
               title="profile information"
@@ -73,12 +73,8 @@ function Overview() {
             />
             <Divider orientation="vertical" sx={{ mx: 0 }} />
           </Grid>
-          <Grid item xs={12} xl={4}>
-            <ProfilesList
-              title="conversations"
-              profiles={profilesListData}
-              shadow={false}
-            />
+          <Grid size={{ xs: 12, xl: 4 }}>
+            <ProfilesList title="conversations" profiles={profilesListData} shadow={false} />
           </Grid>
         </Grid>
       </MDBox>
@@ -94,7 +90,7 @@ function Overview() {
       </MDBox>
       <MDBox p={2}>
         <Grid container spacing={6}>
-          <Grid item xs={12} md={6} xl={3}>
+          <Grid size={{ xs: 12, md: 6, xl: 3 }}>
             <DefaultProjectCard
               image={homeDecor1}
               label="project #2"
@@ -114,7 +110,7 @@ function Overview() {
               ]}
             />
           </Grid>
-          <Grid item xs={12} md={6} xl={3}>
+          <Grid size={{ xs: 12, md: 6, xl: 3 }}>
             <DefaultProjectCard
               image={homeDecor2}
               label="project #1"
@@ -134,7 +130,7 @@ function Overview() {
               ]}
             />
           </Grid>
-          <Grid item xs={12} md={6} xl={3}>
+          <Grid size={{ xs: 12, md: 6, xl: 3 }}>
             <DefaultProjectCard
               image={homeDecor3}
               label="project #3"
@@ -154,7 +150,7 @@ function Overview() {
               ]}
             />
           </Grid>
-          <Grid item xs={12} md={6} xl={3}>
+          <Grid size={{ xs: 12, md: 6, xl: 3 }}>
             <DefaultProjectCard
               image={homeDecor4}
               label="project #4"

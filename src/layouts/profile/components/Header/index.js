@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 // @mui material components
 import Card from '@mui/material/Card'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import AppBar from '@mui/material/AppBar'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -58,10 +58,7 @@ function Header({ children = '' }) {
         minHeight="18.75rem"
         borderRadius="xl"
         sx={{
-          backgroundImage: ({
-            functions: { rgba, linearGradient },
-            palette: { gradients },
-          }) =>
+          backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
             `${linearGradient(
               rgba(gradients.info.main, 0.6),
               rgba(gradients.info.state, 0.6)
@@ -81,15 +78,10 @@ function Header({ children = '' }) {
         }}
       >
         <Grid container spacing={3} alignItems="center">
-          <Grid item>
-            <MDAvatar
-              src={burceMars}
-              alt="profile-image"
-              size="xl"
-              shadow="sm"
-            />
+          <Grid>
+            <MDAvatar src={burceMars} alt="profile-image" size="xl" shadow="sm" />
           </Grid>
-          <Grid item>
+          <Grid>
             <MDBox height="100%" mt={0.5} lineHeight={1}>
               <MDTypography variant="h5" fontWeight="medium">
                 Richard Davis
@@ -99,13 +91,9 @@ function Header({ children = '' }) {
               </MDTypography>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
+          <Grid size={{ xs: 12, md: 6, lg: 4 }} sx={{ ml: 'auto' }}>
             <AppBar position="static">
-              <Tabs
-                orientation={tabsOrientation}
-                value={tabValue}
-                onChange={handleSetTabValue}
-              >
+              <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
                 <Tab
                   label="App"
                   icon={

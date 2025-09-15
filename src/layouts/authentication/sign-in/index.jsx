@@ -70,11 +70,14 @@ function Basic() {
   const signInClick = async (e) => {
     e?.preventDefault()
 
-    await login.tryLogin({
-      data: loginData,
-      resolve: loginSuccessful,
-      reject: loginUnsuccessful,
-    })
+    // await login.tryLogin({
+    //   data: loginData,
+    //   resolve: loginSuccessful,
+    //   reject: loginUnsuccessful,
+    // })
+
+    // TODO: This line should be removed and the await call above must be uncommented.
+    loginSuccessful()
   }
 
   const editKeyDown = (e) => {
