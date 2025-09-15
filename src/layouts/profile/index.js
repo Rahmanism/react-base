@@ -1,5 +1,5 @@
 // @mui material components
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 
 // @mui icons

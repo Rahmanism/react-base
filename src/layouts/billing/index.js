@@ -11,7 +11,7 @@ import Invoices from 'layouts/billing/components/Invoices'
 import BillingInformation from 'layouts/billing/components/BillingInformation'
 import Transactions from 'layouts/billing/components/Transactions'
 
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 function Billing() {
   return (

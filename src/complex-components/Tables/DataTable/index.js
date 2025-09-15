@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 
 // react-table components
 import {
-  useTable,
-  usePagination,
-  useGlobalFilter,
-  useAsyncDebounce,
-  useSortBy,
-} from 'react-table'
+  useReactTable,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  flexRender,
+} from '@tanstack/react-table'
 
 // @mui material components
 import Table from '@mui/material/Table'
@@ -35,42 +35,56 @@ function DataTable({
   canSearch = false,
   showTotalEntries = true,
   table,
-  pagination = { variant: 'gradient', color: 'info' },
+  paginationView = { variant: 'gradient', color: 'info' },
   isSorted = true,
   noEndBorder = false,
 }) {
-  const defaultValue = entriesPerPage.defaultValue
-    ? entriesPerPage.defaultValue
-    : 10
+  const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
     : ['5', '10', '15', '20', '25']
   const columns = useMemo(() => table.columns, [table])
   const data = useMemo(() => table.rows, [table])
 
-  const tableInstance = useTable(
-    { columns, data, initialState: { pageIndex: 0 } },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  )
+  const [globalFilter, setGlobalFilter] = useState('')
+  const [sorting, setSorting] = useState([])
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+
+  const tableInstance = useReactTable({
+    columns,
+    data,
+    initialState: {
+      pagination: {
+        pageIndex: 0,
+      },
+    },
+    state: {
+      globalFilter,
+      sorting,
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+  })
 
   const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-    rows,
-    page,
-    pageOptions,
-    canPreviousPage,
-    canNextPage,
+    getHeaderGroups,
+    getRowModel,
+    getPaginationRowModel,
+    getPageOptions,
+    getCanPreviousPage,
+    getCanNextPage,
     gotoPage,
     nextPage,
+    getPageCount,
     previousPage,
     setPageSize,
-    setGlobalFilter,
-    state: { pageIndex, pageSize, globalFilter },
   } = tableInstance
 
   // Set the default value for the entries per page when component mounts
@@ -80,12 +94,12 @@ function DataTable({
   const setEntriesPerPage = (value) => setPageSize(value)
 
   // Render the paginations
-  const renderPagination = pageOptions.map((option) => (
+  const renderPagination = getPageOptions().map((option) => (
     <MDPagination
       item
       key={option}
       onClick={() => gotoPage(Number(option))}
-      active={pageIndex === option}
+      active={pagination.pageIndex === option}
     >
       {option + 1}
     </MDPagination>
@@ -93,24 +107,24 @@ function DataTable({
 
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
-    value > pageOptions.length || value < 0
-      ? gotoPage(0)
-      : gotoPage(Number(value))
+    value > getPageOptions().length || value < 0 ? gotoPage(0) : gotoPage(Number(value))
 
   // Customized page options starting from 1
-  const customizedPageOptions = pageOptions.map((option) => option + 1)
+  const customizedPageOptions = getPageOptions().map((option) => option + 1)
 
   // Setting value for the pagination input
-  const handleInputPaginationValue = ({ target: value }) =>
-    gotoPage(Number(value.value - 1))
+  const handleInputPaginationValue = ({ target: value }) => gotoPage(Number(value.value - 1))
 
   // Search input value state
   const [search, setSearch] = useState(globalFilter)
 
   // Search input state handle
-  const onSearchChange = useAsyncDebounce((value) => {
+  const onSearchChange = (value) => {
     setGlobalFilter(value || undefined)
-  }, 100)
+  }
+  // const onSearchChange = useAsyncDebounce((value) => {
+  //   setGlobalFilter(value || undefined)
+  // }, 100)
 
   // A function that sets the sorted value for the table
   const setSortedValue = (column) => {
@@ -129,28 +143,25 @@ function DataTable({
 
   // Setting the entries starting point
   const entriesStart =
-    pageIndex === 0 ? pageIndex + 1 : pageIndex * pageSize + 1
+    pagination.pageIndex === 0
+      ? pagination.pageIndex + 1
+      : pagination.pageIndex * pagination.pageSize + 1
 
   // Setting the entries ending point
   let entriesEnd
 
-  if (pageIndex === 0) {
-    entriesEnd = pageSize
-  } else if (pageIndex === pageOptions.length - 1) {
-    entriesEnd = rows.length
+  if (pagination.pageIndex === 0) {
+    entriesEnd = pagination.pageSize
+  } else if (pagination.pageIndex === getPageOptions().length - 1) {
+    entriesEnd = getRowModel().rows.length
   } else {
-    entriesEnd = pageSize * (pageIndex + 1)
+    entriesEnd = pagination.pageSize * (pagination.pageIndex + 1)
   }
 
   return (
     <TableContainer sx={{ boxShadow: 'none' }}>
       {entriesPerPage || canSearch ? (
-        <MDBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          p={3}
-        >
+        <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
           {entriesPerPage && (
             <MDBox display="flex" alignItems="center">
               <Autocomplete
@@ -185,42 +196,43 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      <Table>
         <MDBox component="thead">
-          {headerGroups.map((headerGroup) => (
-            <TableRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+          {getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id ?? headerGroup.field}>
+              {headerGroup.headers.map((header) => (
                 <DataTableHeadCell
-                  {...column.getHeaderProps(
-                    isSorted && column.getSortByToggleProps()
-                  )}
-                  width={column.width ? column.width : 'auto'}
-                  align={column.align ? column.align : 'left'}
-                  sorted={setSortedValue(column)}
+                  key={header.id ?? header.field}
+                  width={header.column.columnDef.width ? header.column.columnDef.width : 'auto'}
+                  align={header.column.columnDef.align ? header.column.columnDef.align : 'left'}
+                  // sorted={setSortedValue(header)}
+                  sorted={header.column.getIsSorted()}
+                  onClick={
+                    header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined
+                  }
                 >
-                  {column.render('Header')}
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext())}
                 </DataTableHeadCell>
               ))}
             </TableRow>
           ))}
         </MDBox>
-        <TableBody {...getTableBodyProps()}>
-          {page.map((row, key) => {
-            prepareRow(row)
-            return (
-              <TableRow {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <DataTableBodyCell
-                    noBorder={noEndBorder && rows.length - 1 === key}
-                    align={cell.column.align ? cell.column.align : 'left'}
-                    {...cell.getCellProps()}
-                  >
-                    {cell.render('Cell')}
-                  </DataTableBodyCell>
-                ))}
-              </TableRow>
-            )
-          })}
+        <TableBody>
+          {getPaginationRowModel().rows.map((row, key) => (
+            <TableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <DataTableBodyCell
+                  key={cell.id}
+                  noBorder={noEndBorder && getRowModel().rows.length - 1 === key}
+                  align={cell.column.columnDef.align ? cell.column.columnDef.align : 'left'}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </DataTableBodyCell>
+              ))}
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
 
@@ -229,25 +241,21 @@ function DataTable({
         flexDirection={{ xs: 'column', sm: 'row' }}
         justifyContent="space-between"
         alignItems={{ xs: 'flex-start', sm: 'center' }}
-        p={!showTotalEntries && pageOptions.length === 1 ? 0 : 3}
+        p={!showTotalEntries && getPageOptions().length === 1 ? 0 : 3}
       >
         {showTotalEntries && (
           <MDBox mb={{ xs: 3, sm: 0 }}>
-            <MDTypography
-              variant="button"
-              color="secondary"
-              fontWeight="regular"
-            >
+            <MDTypography variant="button" color="secondary" fontWeight="regular">
               نمایش {entriesStart} تا {entriesEnd} از {rows.length} رکورد
             </MDTypography>
           </MDBox>
         )}
-        {pageOptions.length > 1 && (
+        {getPageOptions().length > 1 && (
           <MDPagination
-            variant={pagination.variant ? pagination.variant : 'gradient'}
-            color={pagination.color ? pagination.color : 'info'}
+            variant={paginationView.variant ? paginationView.variant : 'gradient'}
+            color={paginationView.color ? paginationView.color : 'info'}
           >
-            {canPreviousPage && (
+            {getCanPreviousPage() && (
               <MDPagination item onClick={() => previousPage()}>
                 <Icon sx={{ fontWeight: 'bold' }}>chevron_left</Icon>
               </MDPagination>
@@ -260,14 +268,14 @@ function DataTable({
                     min: 1,
                     max: customizedPageOptions.length,
                   }}
-                  value={customizedPageOptions[pageIndex]}
+                  value={customizedPageOptions[pagination.pageIndex]}
                   onChange={(handleInputPagination, handleInputPaginationValue)}
                 />
               </MDBox>
             ) : (
               renderPagination
             )}
-            {canNextPage && (
+            {getCanNextPage() && (
               <MDPagination item onClick={() => nextPage()}>
                 <Icon sx={{ fontWeight: 'bold' }}>chevron_right</Icon>
               </MDPagination>

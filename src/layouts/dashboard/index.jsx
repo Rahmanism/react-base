@@ -1,7 +1,7 @@
 // components
 import MDBox from 'components/MDBox'
 
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { ToastContainer } from 'react-toastify'
 import Projects from 'layouts/rtl/components/Projects'
 import ReportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 import { Icon, Tooltip } from '@mui/material'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 // components
 import MDBox from 'components/MDBox'

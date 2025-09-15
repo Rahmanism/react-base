@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 // @mui material components
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 // components
 import MDBox from 'components/MDBox'
