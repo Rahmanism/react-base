@@ -52,7 +52,7 @@ export default defineConfig({
   },
 
   server: {
-    host: 'rahmanism.ir',
+    host: '127.0.0.1',
     port: 3000,
     // https: {
       // key: './rahmanism.ir-privateKey.pem',
