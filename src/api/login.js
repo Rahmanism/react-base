@@ -42,10 +42,6 @@ class Login extends Api {
       email: parsedToken[this.claims.email],
     }
     localStorage.setItem('user', JSON.stringify(user))
-    localStorage.setItem(
-      'GetAllDeviceLogsInterval',
-      parsedToken.GetAllDeviceLogsInterval
-    )
     return user
   }
 }

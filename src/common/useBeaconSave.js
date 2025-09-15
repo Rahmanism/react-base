@@ -15,7 +15,7 @@ export const useBeaconSave = (
   const getDataRef = useRef(getDataToSave)
 
   // Calls the close camera stream by default
-  if (urlToCall === '') urlToCall = getBaseUrl() + '/Device/CloseCameraStream'
+  if (urlToCall === '') urlToCall = getBaseUrl() + '/DoBeforeClose'
 
   useEffect(() => {
     getDataRef.current = getDataToSave

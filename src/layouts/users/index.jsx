@@ -12,14 +12,12 @@ import Loading from 'components/Loading'
 import { tSuccess, tLoading, tError } from 'common/toast'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Consts } from 'common'
-import MyDialog, { DialogResult } from 'components/MyDialog'
+import { DialogResult } from 'components/MyDialog'
 import TwoState from 'complex-components/Badge'
-import UserDevices from './userDevices'
 import useUsers from './useUsers'
 import EditForm from './editForm'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import DataGridRtl from 'complex-components/Tables/DataGridRtl'
-import { goto } from 'common/common'
 
 const defaultUser = {
   id: 0,
@@ -28,8 +26,6 @@ const defaultUser = {
   password: '',
   role: '2',
   cardId: '',
-  provinceId: 0,
-  provinceTitle: '',
   enabled: true,
   canLogin: false,
 }
@@ -43,7 +39,7 @@ export default function UserList() {
       field: 'role',
       flex: 1,
       maxWidth: 200,
-      description: 'ادمین یا کاربر استانی',
+      description: 'ادمین یا کاربر',
       valueGetter: (value) => {
         return value === '1' ? 'ادمین' : 'کاربر'
       },
@@ -54,12 +50,6 @@ export default function UserList() {
       flex: 1,
       maxWidth: 200,
       align: 'left',
-    },
-    {
-      headerName: 'استان',
-      field: 'provinceTitle',
-      flex: 1,
-      maxWidth: 200,
     },
     {
       headerName: 'امکان لاگین',
@@ -103,30 +93,6 @@ export default function UserList() {
             label="حذف"
             onClick={() => deleteThis(id)}
           />,
-          <GridActionsCellItem
-            icon={
-              <Tooltip title="دستگاه‌ها">
-                <Icon fontSize="small" color="default" data-id={id}>
-                  router
-                </Icon>
-              </Tooltip>
-            }
-            label="ثبت کارت در دستگاه"
-            onClick={() => showDevicesList(id)}
-          />,
-          <GridActionsCellItem
-            icon={
-              <Tooltip title="مجوزهای عملیات دستگاه‌ها">
-                <Icon fontSize="small" color="default" data-id={id}>
-                  key
-                </Icon>
-              </Tooltip>
-            }
-            label="مجوزهای عملیات دستگاه‌ها"
-            onClick={() => {
-              goto(`/deviceOpsPermissions?userId=${id}`)
-            }}
-          />,
         ]
       },
     },
@@ -136,11 +102,7 @@ export default function UserList() {
   const [isShowingForm, setIsShowingForm] = useState(false)
   const apiObj = new UserApi()
   const [rows, setRows] = useState([])
-  const [deviceId, setDeviceId] = useState(0)
   const [currentItem, setCurrentItem] = useState(defaultUser)
-  const [showDevices, setShowDevices] = useState(false)
-  const [userId, setUserId] = useState()
-  const [userGivenName, setUserGivenName] = useState('')
   const toastId = useRef(0)
   const dataRef = useRef()
 
@@ -197,20 +159,9 @@ export default function UserList() {
       role: item.role,
       cardId: item.cardId,
       enabled: item.enabled,
-      provinceId: item.provinceId,
-      provinceTitle: item.provinceTitle,
       canLogin: item.canLogin,
     })
     setIsShowingForm(true)
-  }
-
-  const showDevicesList = (id) => {
-    const rowUserId = +id
-    const row = users?.filter((i) => i.id === rowUserId)[0]
-    if (!row) return
-    setShowDevices(true)
-    setUserId(rowUserId)
-    setUserGivenName(row.givenName)
   }
 
   useEffect(() => {
@@ -218,7 +169,6 @@ export default function UserList() {
   }, [users?.length])
 
   function saveMutationSuccess(data) {
-    setDeviceId(0)
     tSuccess(data.message, toastId.current)
     queryClient.resetQueries({
       queryKey: [apiObj.apiUrl],
@@ -230,7 +180,7 @@ export default function UserList() {
   const addMutation = useMutation({
     mutationFn: (data) => {
       toastId.current = tLoading()
-      return apiObj.add({ data, deviceId, showError: false })
+      return apiObj.add({ data, showError: false })
     },
     onSuccess: (data) =>
       saveMutationSuccess({ data: data.data, message: data.message }),
@@ -259,30 +209,11 @@ export default function UserList() {
     setIsShowingForm(false)
   }
 
-  // function formCancel() {
-  //   setIsShowingForm(false)
-  // }
-
-  const deviceSelect = ({ deviceId: selectedDeviceId }) => {
-    setDeviceId(selectedDeviceId)
-  }
-
-  const userDevices = () => (
-    <MyDialog
-      title={`دستگاه‌های ${userGivenName}`}
-      close={() => setShowDevices(false)}
-      open={showDevices}
-      showCloseOnly
-    >
-      <UserDevices userId={userId} userGivenName={userGivenName} />
-    </MyDialog>
-  )
-
   const isLoading =
     usersIsLoading ||
-    deleteMutation.isLoading ||
-    addMutation.isLoading ||
-    editMutation.isLoading
+    deleteMutation.isPending ||
+    addMutation.isPending ||
+    editMutation.isPending
 
   return (
     <>
@@ -306,10 +237,8 @@ export default function UserList() {
           formSubmit={formSubmit}
           isShowingForm={isShowingForm}
           currentItem={currentItem}
-          deviceSelect={deviceSelect}
         />
       )}
-      {showDevices && userDevices()}
       <MDBox py={3}>
         <Grid2 container pb={3}>
           <MDButton onClick={showForm} color="primary" variant="contained">

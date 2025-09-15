@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import DeviceSelector from 'complex-components/DeviceSelector'
 import MDBox from 'components/MDBox'
 import MDInput from 'components/MDInput'
 import MDTypography from 'components/MDTypography'
 import MyDialog from 'components/MyDialog'
-import ProvinceSelector from 'complex-components/ProvinceSelector'
 import {
   Checkbox,
   FormControlLabel,
@@ -20,21 +18,16 @@ import {
  * @param {function} options.formSubmit - The form submit function.
  * @param {boolean} options.isShowingForm - Indicates whether the form is currently being shown.
  * @param {Object} options.currentItem - The current user data. If it's a new user, it should be default user data.
- * @param {function} options.deviceSelect - The device select function.
  * @return {JSX.Element} The JSX element representing the form.
  */
 export default function EditForm(options) {
-  const { formSubmit, isShowingForm, currentItem, deviceSelect } = options
+  const { formSubmit, isShowingForm, currentItem } = options
   const [currentUser, setCurrentUser] = useState(currentItem)
 
   const submit = (result) => {
     if (formSubmit) {
       formSubmit(result, currentUser)
     }
-  }
-
-  const changeProvince = ({ provinceId, provinceTitle }) => {
-    setCurrentUser({ ...currentUser, provinceId, provinceTitle })
   }
 
   return (
@@ -141,17 +134,6 @@ export default function EditForm(options) {
             }
           />
         </MDBox>
-        <MDBox mb={2}>
-          <ProvinceSelector
-            value={currentUser.provinceId}
-            onSelected={changeProvince}
-          />
-        </MDBox>
-        {currentUser.id === 0 && (
-          <MDBox mb={2}>
-            <DeviceSelector onSelected={deviceSelect} variant="outlined" />
-          </MDBox>
-        )}
       </MDBox>
     </MyDialog>
   )

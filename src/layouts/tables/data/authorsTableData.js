@@ -47,7 +47,7 @@ export default function data() {
 
     rows: [
       {
-        author: <Author image={team2} name="علی حسینی" email="ali@zkm.com" />,
+        author: <Author image={team2} name="علی حسینی" email="ali@rahmanism.ir" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -72,7 +72,7 @@ export default function data() {
       },
       {
         author: (
-          <Author image={team3} name="مجید احمدی" email="ahmadi@zkm.com" />
+          <Author image={team3} name="مجید احمدی" email="ahmadi@rahmanism.ir" />
         ),
         function: <Job title="Programator" description="Developer" />,
         status: (
@@ -110,7 +110,7 @@ export default function data() {
       },
       {
         author: (
-          <Author image={team4} name="سروش سبحانی" email="sobhani@zkm.com" />
+          <Author image={team4} name="سروش سبحانی" email="sobhani@rahmanism.ir" />
         ),
         function: <Job title="Executive" description="Projects" />,
         status: (
@@ -148,7 +148,7 @@ export default function data() {
       },
       {
         author: (
-          <Author image={team3} name="مجید احمدی" email="ahmadi@zkm.com" />
+          <Author image={team3} name="مجید احمدی" email="ahmadi@rahmanism.ir" />
         ),
         function: <Job title="Programator" description="Developer" />,
         status: (
@@ -186,7 +186,7 @@ export default function data() {
       },
       {
         author: (
-          <Author image={team3} name="سروش سبحانی" email="sobhani@zkm.com" />
+          <Author image={team3} name="سروش سبحانی" email="sobhani@rahmanism.ir" />
         ),
         function: <Job title="Manager" description="Executive" />,
         status: (
@@ -224,7 +224,7 @@ export default function data() {
       },
       {
         author: (
-          <Author image={team4} name="بهزاد ترکان" email="behzad@zkm.com" />
+          <Author image={team4} name="بهزاد ترکان" email="behzad@rahmanism.ir" />
         ),
         function: <Job title="Programator" description="Developer" />,
         status: (

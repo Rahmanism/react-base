@@ -57,6 +57,11 @@ export const TheColorsCodes = {
   warning: 6,
 }
 
+export const ConfigurationTitles = {
+  Timeout: 'حداکثر زمان مجاز',
+  RefreshInterval: 'صفحه داشبورد هر چند ثانیه یک بار بروزرسانی شود؟',
+}
+
 /**
  * Events that needs a ding audio to be played.
  * Will be used in dashboard.

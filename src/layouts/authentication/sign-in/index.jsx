@@ -16,7 +16,7 @@ import MDButton from 'components/MDButton'
 import BasicLayout from 'layouts/authentication/components/BasicLayout'
 
 // Images
-import bgImage from 'assets/images/bg-sign-in-basic.jpeg'
+import bgImage from 'assets/images/bg.jpeg'
 
 import Login from 'api/login'
 import { tSuccess, tError } from 'common/toast'

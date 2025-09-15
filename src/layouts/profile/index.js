@@ -53,17 +53,17 @@ function Overview() {
               }}
               social={[
                 {
-                  link: 'https://www.facebook.com/zkm/',
+                  link: 'https://www.facebook.com/leomessi',
                   icon: <FacebookIcon />,
                   color: 'facebook',
                 },
                 {
-                  link: 'https://twitter.com/zkm',
+                  link: 'https://x.com/rahmanism_ir',
                   icon: <TwitterIcon />,
                   color: 'twitter',
                 },
                 {
-                  link: 'https://www.instagram.com/zkm/',
+                  link: 'https://www.instagram.com/',
                   icon: <InstagramIcon />,
                   color: 'instagram',
                 },
