@@ -24,8 +24,8 @@ import team4 from 'assets/images/logo-ct.png'
 import { Consts } from 'common/consts'
 
 export default function data() {
-  const avatars = (أعضاء) =>
-    أعضاء.map(([image, name]) => (
+  const avatars = (members) =>
+    members.map(([image, name]) => (
       <Tooltip key={name} title={name} placeholder="bottom">
         <MDAvatar
           src={image}
@@ -60,16 +60,16 @@ export default function data() {
 
   return {
     columns: [
-      { id: 'المشروع', Header: 'المشروع', accessor: 'المشروع', width: '45%', align: 'left' },
-      { id: 'أعضاء', Header: 'أعضاء', accessor: 'أعضاء', width: '10%', align: 'left' },
-      { id: 'ميزانية', Header: 'ميزانية', accessor: 'ميزانية', align: 'center' },
-      { id: 'إكمال', Header: 'إكمال', accessor: 'إكمال', align: 'center' },
+      { id: 'project', header: 'پروژه', accessor: 'project', width: '45%', align: 'left' },
+      { id: 'members', header: 'اعضا', accessor: 'members', width: '15%', align: 'left' },
+      { id: 'budget', header: 'بودجه', accessor: 'budget', align: 'center' },
+      { id: 'complete', header: 'تکمیل', accessor: 'complete', align: 'center' },
     ],
 
     rows: [
       {
-        المشروع: <Company image={logoXD} name={Consts.brand} />,
-        أعضاء: (
+        project: 'testtt', // <Company image={logoXD} name={Consts.brand} />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([
               [team1, 'Ryan Tompson'],
@@ -79,20 +79,20 @@ export default function data() {
             ])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
             $14,000
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={60} color="info" variant="gradient" label={false} />
           </MDBox>
         ),
       },
       {
-        المشروع: <Company image={logoAtlassian} name="أضف مسار التقدم إلى التطبيق الداخلي" />,
-        أعضاء: (
+        project: <Company image={logoAtlassian} name="اضافه کردن مسیر پیشرفت به برنامه داخلی" />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([
               [team2, 'Romina Hadid'],
@@ -100,20 +100,20 @@ export default function data() {
             ])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
             $3,000
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={10} color="info" variant="gradient" label={false} />
           </MDBox>
         ),
       },
       {
-        المشروع: <Company image={logoSlack} name="إصلاح أخطاء النظام الأساسي" />,
-        أعضاء: (
+        project: <Company image={logoSlack} name="رفع خطاهای پلتفرم" />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([
               [team1, 'Ryan Tompson'],
@@ -121,20 +121,20 @@ export default function data() {
             ])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            غير مضبوط
+            درست نیست
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={100} color="success" variant="gradient" label={false} />
           </MDBox>
         ),
       },
       {
-        المشروع: <Company image={logoSpotify} name="إطلاق تطبيق الهاتف المحمول الخاص بنا" />,
-        أعضاء: (
+        project: <Company image={logoSpotify} name="راه‌اندازی اپلیکیشن موبایل ما" />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([
               [team4, 'Jessica Doe'],
@@ -144,38 +144,38 @@ export default function data() {
             ])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
             $20,500
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={100} color="success" variant="gradient" label={false} />
           </MDBox>
         ),
       },
       {
-        المشروع: <Company image={logoJira} name="أضف صفحة التسعير الجديدة" />,
-        أعضاء: (
+        project: <Company image={logoJira} name="اضافه شدن صفحه قیمت گذاری جدید" />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([[team4, 'Jessica Doe']])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
             $500
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={25} color="info" variant="gradient" label={false} />
           </MDBox>
         ),
       },
       {
-        المشروع: <Company image={logoInvesion} name="إعادة تصميم متجر جديد على الإنترنت" />,
-        أعضاء: (
+        project: <Company image={logoInvesion} name="طراحی جدید فروشگاه آنلاین" />,
+        members: (
           <MDBox display="flex" py={1}>
             {avatars([
               [team1, 'Ryan Tompson'],
@@ -183,12 +183,12 @@ export default function data() {
             ])}
           </MDBox>
         ),
-        ميزانية: (
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
             $2,000
           </MDTypography>
         ),
-        إكمال: (
+        complete: (
           <MDBox width="8rem" textAlign="left">
             <MDProgress value={40} color="info" variant="gradient" label={false} />
           </MDBox>

@@ -44,15 +44,10 @@ function Projects() {
 
   return (
     <Card>
-      <MDBox
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        p={3}
-      >
+      <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
           <MDTypography variant="h6" gutterBottom>
-            المشاريع
+            پروژه‌ها
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
@@ -65,22 +60,22 @@ function Projects() {
               done
             </Icon>
             <MDTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30 انتهى</strong> هذا الشهر
+              &nbsp;<strong>۳۰ مورد</strong>در این ماه به پایان رسید
             </MDTypography>
           </MDBox>
         </MDBox>
         <MDBox color="text" px={2}>
-          <Icon
-            sx={{ cursor: 'pointer', fontWeight: 'bold' }}
-            fontSize="small"
-            onClick={openMenu}
-          >
+          <Icon sx={{ cursor: 'pointer', fontWeight: 'bold' }} fontSize="small" onClick={openMenu}>
             more_vert
           </Icon>
         </MDBox>
         {renderMenu}
       </MDBox>
       <MDBox>
+        {console.log('%ccolumns', 'font-size: large; color: blue')}
+        {console.log(columns)}
+        {console.log('%crows', 'font-size: large; color: green; font-weight: bold;')}
+        {console.log(rows)}
         <DataTable
           table={{ columns, rows }}
           showTotalEntries={false}

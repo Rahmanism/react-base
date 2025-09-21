@@ -206,7 +206,7 @@ function DataTable({
                   width={header.column.columnDef.width ? header.column.columnDef.width : 'auto'}
                   align={header.column.columnDef.align ? header.column.columnDef.align : 'left'}
                   // sorted={setSortedValue(header)}
-                  sorted={header.column.getIsSorted()}
+                  // sorted={header.column.getIsSorted()}
                   onClick={
                     header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined
                   }
@@ -223,13 +223,21 @@ function DataTable({
           {getPaginationRowModel().rows.map((row, key) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <DataTableBodyCell
-                  key={cell.id}
-                  noBorder={noEndBorder && getRowModel().rows.length - 1 === key}
-                  align={cell.column.columnDef.align ? cell.column.columnDef.align : 'left'}
+                <td
+                key={cell.id}
+                align={cell.column.columnDef.align ? cell.column.columnDef.align : 'left'}
                 >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </DataTableBodyCell>
+                  {console.log('🎯 cell::', cell)}
+                  {JSON.stringify(cell.column.cell)}
+                  {/* {flexRender(cell.column.columnDef.cell, cell.getContext())} */}
+                </td>
+                // <DataTableBodyCell
+                //   key={cell.id}
+                //   noBorder={noEndBorder && getRowModel().rows.length - 1 === key}
+                //   align={cell.column.columnDef.align ? cell.column.columnDef.align : 'left'}
+                // >
+                //   {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                // </DataTableBodyCell>
               ))}
             </TableRow>
           ))}
