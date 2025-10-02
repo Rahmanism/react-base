@@ -1,0 +1,59 @@
+/* This has been commented out because of 
+   some incompatibilities
+.MuiButtonBase-root + .MuiButtonBase-root {
+    margin-right: 5px;
+} */
+
+#root > .MuiBox-root {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*** temporary */
+.temp-soon:before {
+  content: ' بـــــزودی ';
+  position: absolute;
+  z-index: 10000;
+  display: inline-block;
+  height: 200px;
+  text-align: center;
+  font-size: 100pt;
+  color: gray;
+  opacity: 0.2;
+  transform: scaleX(1.3);
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.normal-color-forced {
+  color: #f4f4f4 !important;
+}
+
+video {
+  border-radius: 0.5rem;
+}
+
+.transitioned {
+  transition: all 0.5s ease-in-out;
+}
+
+.fab {
+  position: fixed !important;
+  bottom: 3rem;
+  left: 3rem;
+}
